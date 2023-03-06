@@ -1,4 +1,4 @@
-package framework;
+package framework.webDriverFactory;
 
 public enum BrowserType {
     Chrome,
