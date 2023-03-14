@@ -1,2 +1,6 @@
-package framework.elements;public interface RadiButtonSelectable {
+package framework.elements;
+
+public interface RadiButtonSelectable {
+
+    boolean setGender(String gender);
 }

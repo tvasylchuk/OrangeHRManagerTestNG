@@ -1,5 +1,6 @@
 package framework.elements;
 
+import framework.webDriverFactory.BrowserType;
 import framework.webDriverFactory.Driver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class BaseElementImp implements Element{
 
-    private final WebElement element;
-    private final Driver driver;
+    protected final WebElement element;
+    protected final Driver driver;
 
     public BaseElementImp(final WebElement element, final Driver driver) {
         this.element = element;
@@ -23,8 +24,22 @@ public class BaseElementImp implements Element{
         element.click();
     }
 
-    public void waitUntilVisible(WebElement element) {
+    public void waitUntilVisible() {
         driver.getWait().until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitUntilInvisible() {
+        driver.getWait().until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    public void waitUntilClickable() {
+        driver.getWait().until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+
+    public void scrollTillVisible(){
+        JavascriptExecutor js = (JavascriptExecutor) driver.getWebDriver();
+        js.executeScript("arguments[0].scrollIntoView(false);", element);
     }
 
     @Override
@@ -34,9 +49,12 @@ public class BaseElementImp implements Element{
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {
+        waitUntilVisible();
         JavascriptExecutor js = (JavascriptExecutor) driver.getWebDriver();
         js.executeScript("arguments[0].style.border='3px solid red'", element);
-        element.clear();
+        element.click();
+        element.sendKeys(Keys.CONTROL+"A");
+        element.sendKeys(Keys.DELETE);
         element.sendKeys(keysToSend);
     }
 
@@ -111,5 +129,13 @@ public class BaseElementImp implements Element{
     @Override
     public WebElement getWrappedElement() {
         return element;
+    }
+
+    public static void sleep(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

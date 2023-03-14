@@ -1,4 +1,4 @@
-package framework.webDriverFactory;
+package framework;
 
 public class Constants {
     private final static String PROJECT_FOLDER = System.getProperty("user.dir");
