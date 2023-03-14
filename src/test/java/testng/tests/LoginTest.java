@@ -1,13 +1,17 @@
-package tests;
+package testng.tests;
 
 import model.Credentials;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.LoginPage;
+import pages.UserManagementPage;
+import pages.pageComponents.MainMenuPageComponent;
+import testng.tests.base.BaseTest;
 
 @Test
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     @Test
     public void adminLoginTest()
@@ -15,10 +19,9 @@ public class LoginTest extends BaseTest{
         var basePage = new BasePage(getDriver());
         basePage.waitTillPageLoaded();
         var page = new LoginPage(getDriver());
-
         Assert.assertEquals(getDriver().getBrowserUri(), "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
-        page.login(Credentials.Create("admin", "admin123"));
+        page.login(getSuperAdmin());
         Assert.assertEquals(getDriver().getBrowserUri(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
     }
 
@@ -28,7 +31,7 @@ public class LoginTest extends BaseTest{
         var basePage = new BasePage(getDriver());
         basePage.waitTillPageLoaded();
         var page = new LoginPage(getDriver());
-        page.login(Credentials.Create("", "admin123"));
+        page.login(Credentials.Create("", getSuperAdmin().getPassword()));
 
         Assert.assertEquals(getDriver().getBrowserUri(), "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         Assert.assertTrue(page.isUserNameInvalid());
@@ -41,7 +44,7 @@ public class LoginTest extends BaseTest{
         var basePage = new BasePage(getDriver());
         basePage.waitTillPageLoaded();
         var page = new LoginPage(getDriver());
-        page.login(Credentials.Create("admin", ""));
+        page.login(Credentials.Create(getSuperAdmin().getUserName(), ""));
 
         Assert.assertEquals(getDriver().getBrowserUri(), "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         Assert.assertFalse(page.isUserNameInvalid());
@@ -54,10 +57,9 @@ public class LoginTest extends BaseTest{
         var basePage = new BasePage(getDriver());
         basePage.waitTillPageLoaded();
         var page = new LoginPage(getDriver());
-        page.login(Credentials.Create("admin", "wrongPassword"));
+        page.login(Credentials.Create(getSuperAdmin().getUserName(), getSuperAdmin().getPassword()+"wrong!"));
 
         Assert.assertEquals(getDriver().getBrowserUri(), "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         Assert.assertTrue(page.isCredInvalid());
     }
-
 }

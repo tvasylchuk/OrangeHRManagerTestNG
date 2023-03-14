@@ -1,7 +1,7 @@
-package tests;
+package testng.tests;
 
 import framework.Logger;
-import framework.webDriverFactory.Constants;
+import framework.Constants;
 import framework.webDriverFactory.Driver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
