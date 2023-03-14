@@ -1,28 +1,29 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Test Suite" parallel="tests" verbose="10" >
-    <test thread-count="4" name="Login Chrome Test"   >
-        <parameter name="browser" value="Chrome"/>
-        <parameter name="runMode" value="SauceLabs"/>
+<suite name="Test Suite" verbose="10" >
+    <parameter name="browser" value="Firefox"/>
+    <parameter name="runMode" value="Local"/>
+   <test name="Login Test" >
         <classes>
-            <class name="testng.tests.LoginTest"/>
+        <!--    <class name="testng.tests.PrepareConfiguration"/> -->
+        <!--    <class name="testng.tests.LoginTest"/>-->
         </classes>
     </test>
-    <test thread-count="4" name="Login Edge Test"   >
-        <parameter name="browser" value="Edge"/>
-        <parameter name="runMode" value="SauceLabs"/>
-        <classes>
-            <class name="testng.tests.LoginTest"/>
-        </classes>
-    </test>
-    <test thread-count="4" name="Login Firefox Test"   >
-        <parameter name="browser" value="Firefox"/>
-        <parameter name="runMode" value="SauceLabs"/>
-        <classes>
-            <class name="testng.tests.LoginTest"/>
-        </classes>
-    </test>
-    <listeners>
-        <listener class-name="testng.tests.TestListener"/>
-    </listeners>
-</suite>
+    <!-- <test name ="Users Test">
+          <classes>
+              <class name="testng.tests.CreateUserTests"/>
+              <class name="testng.tests.SearchSystemUserTests"/>
+              <class name="testng.tests.DeleteSystemUserTests"/>
+          </classes>
+      </test>-->
+      <test name ="Personal Info Test">
+          <classes>
+              <class name="testng.tests.PersonalInfoTests"/>
+              <class name="testng.tests.ChangeProfilePictureTest"/>
+              <class name="testng.tests.CleanConfiguration"/>
+          </classes>
+      </test>
+      <listeners>
+          <listener class-name="testng.tests.TestListener"/>
+      </listeners>
+  </suite>

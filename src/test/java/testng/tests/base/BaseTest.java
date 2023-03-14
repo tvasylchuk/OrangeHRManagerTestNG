@@ -1,4 +1,4 @@
-package tests;
+package testng.tests;
 
 import framework.PropertiesResourceManager;
 import framework.webDriverFactory.BrowserType;
@@ -25,7 +25,7 @@ public class BaseTest {
     {
         String name  = context.getName();
         driver.set(Driver.initDriver(BrowserType.valueOf(browserType), TestRunMode.valueOf(runMode), name));
-        context.setAttribute("browser", driver);
+        context.setAttribute("browser", driver.get());
         driver.get().navigate("https://opensource-demo.orangehrmlive.com");
         driver.get().waitPageToLoad();
         driver.get().maximise();
@@ -42,6 +42,7 @@ public class BaseTest {
     public void tearDown()
     {
         driver.get().exit();
+        driver.remove();
     }
 
     private static Pair<String, String> initSauceLabsCredPair() {
