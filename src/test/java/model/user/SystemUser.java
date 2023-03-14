@@ -1,13 +1,13 @@
 package model.user;
 
-public class User {
+public class SystemUser {
     private final Role role;
     private final UserStatus status;
     private final String name;
     private final String userName;
     private final String password;
 
-    public User(Role role, UserStatus status, String name, String userName, String password) {
+    public SystemUser(Role role, UserStatus status, String name, String userName, String password) {
         this.role = role;
         this.status = status;
         this.name = name;

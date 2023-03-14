@@ -1,2 +1,6 @@
-package model.user;public enum Status {
+package model.user;
+
+public enum UserStatus {
+    Enabled,
+    Disabled,
 }

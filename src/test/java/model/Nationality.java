@@ -1,2 +1,9 @@
-package model;public enum Nationality {
+package model;
+
+public enum Nationality {
+
+    American,
+    Polish,
+    Ukrainian,
+    German,
 }

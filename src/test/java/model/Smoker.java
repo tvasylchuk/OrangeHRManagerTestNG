@@ -1,2 +1,6 @@
-package model;public enum Smoker {
+package model;
+
+public enum Smoker {
+    True,
+    False,
 }

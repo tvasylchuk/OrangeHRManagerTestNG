@@ -1,5 +1,6 @@
 package pages;
 
+import framework.Logger;
 import framework.elements.Button;
 import framework.elements.Label;
 import framework.elements.TextBox;
@@ -25,6 +26,7 @@ public class LoginPage {
     public LoginPage(Driver browser) {
         this.browser = browser;
         PageFactory.initElements(this.browser.getWebDriver(), this);
+        assert browser.getBrowserUri().equals("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     }
 
     public void login(Credentials credentials)
@@ -34,25 +36,31 @@ public class LoginPage {
         Button btnSubmitWrapped = new Button(btnSubmit, browser);
 
         txtUserNameWrapped.sendKeys(credentials.getUserName());
+        Logger.getInstance().info("pages.loginPage.UserName.set.text: "+credentials.getUserName());
         txtPasswordWrapped.sendKeys(credentials.getPassword());
+        Logger.getInstance().info("pages.loginPage.Password.set.text: "+credentials.getPassword());
         btnSubmitWrapped.click();
+        Logger.getInstance().info("pages.loginPage.Submit.click");
     }
 
     public boolean isCredInvalid() {
         browser.getWait().until(ExpectedConditions.visibilityOf(lblInvalidCred));
         Label lblInvalidCredWrapper = new Label(lblInvalidCred, browser);
+        Logger.getInstance().info("pages.loginPage.isCredInvalid.invalidCredentialsError.displayed."+lblInvalidCredWrapper.isDisplayed());
         return lblInvalidCredWrapper.isDisplayed();
     }
 
     public  boolean isUserNameInvalid(){
         TextBox txtUserNameWrapped = new TextBox(txtUserName, browser);
         var className = txtUserNameWrapped.getAttribute("class");
+        Logger.getInstance().info("pages.loginPage.isUserNameInvalid.cssClass.contains.error."+className.contains("oxd-input--error"));
         return className.contains("oxd-input--error");
     }
 
     public  boolean isPasswordInvalid(){
         TextBox txtPasswordWrapped = new TextBox(txtPassword, browser);
         var className = txtPasswordWrapped.getAttribute("class");
+        Logger.getInstance().info("pages.loginPage.isPasswordInvalid.cssClass.contains.error."+className.contains("oxd-input--error"));
         return className.contains("oxd-input--error");
     }
 }

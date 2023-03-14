@@ -1,5 +1,7 @@
-package pages;
+package pages.pageComponents;
 
+import framework.Logger;
+import framework.elements.DropDownMenu;
 import framework.webDriverFactory.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +18,25 @@ public class ToolBarMenuPageComponent {
 
     public ToolBarMenuPageComponent(Driver browser){
         this.browser = browser;
-        PageFactory.initElements(this.browser.getWebDriver(), ToolBarMenuPageComponent.class);
+        PageFactory.initElements(this.browser.getWebDriver(), this);
+    }
+
+    public void clickMenu(String txtMenu, String txtSubMenu){
+        for (WebElement item: menu) {
+            if(item.getText().equals(txtMenu)){
+                item.click();
+                Logger.getInstance().info(String.format("pages.pageComponents.ToolBarMenuPageComponent.clickMenu.%s.click", txtMenu));
+
+                DropDownMenu subMenu = new DropDownMenu(item, browser);
+                subMenu.setValue(txtSubMenu);
+                subMenu.waitUntilInvisible();
+                Logger.getInstance().info(String.format("pages.pageComponents.ToolBarMenuPageComponent.menu.subMenu.%s.click", txtSubMenu));
+                return;
+            }
+        }
+
+        var str = String.format("pages.pageComponents.clickMenu.%s.%s.not.found", txtMenu, txtSubMenu);
+        Logger.getInstance().error(str);
+        throw new RuntimeException(str);
     }
 }

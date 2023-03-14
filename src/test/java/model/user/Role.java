@@ -1,2 +1,6 @@
-package model.user;public enum Role {
+package model.user;
+
+public enum Role {
+    Admin,
+    ESS,
 }
