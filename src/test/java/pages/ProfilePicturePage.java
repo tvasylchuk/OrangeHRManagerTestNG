@@ -78,14 +78,14 @@ public class ProfilePicturePage extends EmployeeFormPage {
             clipboard.setContents(stringSelection, null);
             Robot robot = new Robot();
             robot.delay(250);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
+           // robot.keyPress(KeyEvent.VK_ENTER);
+            //robot.keyRelease(KeyEvent.VK_ENTER);
             robot.keyPress(KeyEvent.VK_CONTROL);
             robot.keyPress(KeyEvent.VK_V);
             robot.keyRelease(KeyEvent.VK_V);
             robot.keyRelease(KeyEvent.VK_CONTROL);
             robot.keyPress(KeyEvent.VK_ENTER);
-            robot.delay(150);
+            robot.delay(250);
             robot.keyRelease(KeyEvent.VK_ENTER);
         }
         catch (Exception e) {

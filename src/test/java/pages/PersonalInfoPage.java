@@ -7,6 +7,7 @@ import framework.webDriverFactory.Driver;
 import io.cucumber.java.an.E;
 import model.*;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pages.pageComponents.EmployeeFormPage;
 import pages.pageComponents.PersonalInfoTabPageComponent;
@@ -76,12 +77,16 @@ public class PersonalInfoPage extends EmployeeFormPage {
     }
 
     public void selectNationality(Nationality nationalityItem){
-        TextBox txtNationality = new TextBox(nationality, browser);
+        ComboBox txtNationality = new ComboBox(nationality, browser);
         txtNationality.click();
-
-        ListBox lsNationality = new ListBox(nationalitiesList, browser);
-        lsNationality.setValue(nationalityItem.toString());
-        Logger.getInstance().info(String.format("pages.PersonalInfoPage.selectNationality.%s.set", nationalityItem.toString().toLowerCase()));
+        if(browser.getCurrentBrowser() == BrowserType.Firefox){
+            txtNationality.setValueFromKeyboard(nationalityItem.toString());
+        }
+        else{
+            ListBox lsNationality = new ListBox(nationalitiesList, browser);
+            lsNationality.setValue(nationalityItem.toString());
+            Logger.getInstance().info(String.format("pages.PersonalInfoPage.selectNationality.%s.set", nationalityItem.toString().toLowerCase()));
+        }
     }
 
     public void setDateOfBirth(Date date){
