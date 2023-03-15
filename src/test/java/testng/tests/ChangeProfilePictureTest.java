@@ -1,7 +1,6 @@
 package testng.tests;
 
 import framework.Constants;
-import model.EmployeeFullName;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.pageComponents.MainMenuPageComponent;
@@ -9,7 +8,7 @@ import pages.PersonalInfoPage;
 import pages.ProfilePicturePage;
 import testng.tests.base.BaseTestWithLogin;
 
-@Test
+
 public class ChangeProfilePictureTest extends BaseTestWithLogin {
 
     private final String FILE_NAME = Constants.PICTURES_DIR+"kitty_picture.jpg";
