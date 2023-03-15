@@ -3,8 +3,11 @@ package framework.elements;
 import framework.webDriverFactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ComboBox extends BaseElementImp implements ItemSelectable {
     private final By listBoxLocator = By.xpath("./ancestor::div[@class='oxd-select-wrapper']//div[@role='listbox']");
@@ -35,5 +38,19 @@ public class ComboBox extends BaseElementImp implements ItemSelectable {
         element.sendKeys(keysToSend);
         ListBox list = initAutoCompleteList();
         list.setValue(Arrays.toString(keysToSend));
+    }
+
+    public void setValueFromKeyboard(String value){
+        var action = new Actions(driver.getWebDriver());
+        action.moveToElement(element).perform();
+        action.keyDown(value.substring(0,1)).pause(200).keyUp(value.substring(0,1)).perform();
+        List<String> availableValues = new ArrayList<>();
+        while(!element.getText().equals(value)){
+            availableValues.add(element.getText());
+            action.keyDown("u").pause(200).keyUp("u").perform();
+            if (availableValues.contains(element.getText())){
+                throw new RuntimeException("Invalid value: "+value);
+            }
+        }
     }
 }

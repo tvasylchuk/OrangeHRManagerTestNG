@@ -4,6 +4,7 @@ import framework.webDriverFactory.BrowserType;
 import framework.webDriverFactory.Driver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -29,7 +30,8 @@ public class BaseElementImp implements Element{
     }
 
     public void waitUntilInvisible() {
-        driver.getWait().until(ExpectedConditions.invisibilityOf(element));
+        WebDriverWait wait = new WebDriverWait(driver.getWebDriver(), driver.getPageLoadTimeout());
+        wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
     public void waitUntilClickable() {
