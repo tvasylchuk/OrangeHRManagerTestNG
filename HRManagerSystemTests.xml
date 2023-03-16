@@ -2,12 +2,12 @@
 
 <suite name="Test Suite"  parallel="tests" verbose="10" >
     <parameter name="runMode" value="Grid"/>
-  <!-- <test name="Login Test Chrome" >
+    <test name="Login Test Chrome" >
        <parameter name="browser" value="Chrome"/>
         <classes>
             <class name="testng.tests.LoginTest"/>
         </classes>
-    </test> -->
+    </test>
     <test name ="Users Test Chrome">
         <parameter name="browser" value="Chrome"/>
           <classes>
@@ -20,12 +20,12 @@
               <class name="testng.tests.CleanConfiguration"/>
           </classes>
     </test>
-   <!-- <test name="Login Test Edge" >
+    <test name="Login Test Edge" >
         <parameter name="browser" value="Edge"/>
         <classes>
             <class name="testng.tests.LoginTest"/>
         </classes>
-    </test> -->
+    </test>
     <test name ="Users Test Edge">
         <parameter name="browser" value="Edge"/>
         <classes>
@@ -36,6 +36,12 @@
             <class name="testng.tests.PersonalInfoTests"/>
             <class name="testng.tests.ChangeProfilePictureTest"/>
             <class name="testng.tests.CleanConfiguration"/>
+        </classes>
+    </test>
+    <test name="Login Test Firefox" >
+        <parameter name="browser" value="Firefox"/>
+        <classes>
+            <class name="testng.tests.LoginTest"/>
         </classes>
     </test>
     <test name ="Users Test Firefox">
