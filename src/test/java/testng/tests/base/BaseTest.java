@@ -38,7 +38,9 @@ public class BaseTest {
 
         systemAdmin.set(new SystemUser(Role.valueOf(rm.getPropertyValueByKey("SystemAdminRole")),
                 UserStatus.valueOf(rm.getPropertyValueByKey("SystemAdminStatus")),
-                rm.getPropertyValueByKey("SystemAdminName"),
+                String.format("%s %s %s", rm.getPropertyValueByKey("SystemAdminFirstName"),
+                        rm.getPropertyValueByKey("SystemAdminMiddleName")+rand.nextInt(1000),
+                        rm.getPropertyValueByKey("SystemAdminLastName")),
                 rm.getPropertyValueByKey("SystemAdmin")+rand.nextInt(1000),
                 rm.getPropertyValueByKey("SystemAdminPassword")));
     }

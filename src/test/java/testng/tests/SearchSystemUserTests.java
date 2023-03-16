@@ -9,7 +9,7 @@ import testng.tests.base.BaseTestSystemUser;
 @Test
 public class SearchSystemUserTests extends BaseTestSystemUser {
     @Test
-    public void SearchUserByUserName(){
+    public void searchUserByUserName(){
         var page = new UserManagementPage(getDriver());
         page.setUsernameSearchParameters(getTestData().getUserName());
         page.searchUser();
@@ -23,7 +23,7 @@ public class SearchSystemUserTests extends BaseTestSystemUser {
     }
 
     @Test
-    public void SearchUserByRole(){
+    public void searchUserByRole(){
         var page = new UserManagementPage(getDriver());
         page.setRoleSearchParameters(getTestData().getRole());
         page.searchUser();
@@ -37,7 +37,7 @@ public class SearchSystemUserTests extends BaseTestSystemUser {
     }
 
     @Test
-    public void SearchUserByStatus(){
+    public void searchUserByStatus(){
         var page = new UserManagementPage(getDriver());
         page.setStatusSearchParameters(getTestData().getStatus());
         page.searchUser();
@@ -51,7 +51,7 @@ public class SearchSystemUserTests extends BaseTestSystemUser {
     }
 
     @Test
-    public void SearchUserByEmployeeName(){
+    public void searchUserByEmployeeName(){
         var page = new UserManagementPage(getDriver());
         page.setEmployeeNameSearchParameters(getTestData().getName());
         page.searchUser();

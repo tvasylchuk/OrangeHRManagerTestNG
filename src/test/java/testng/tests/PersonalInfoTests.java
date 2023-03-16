@@ -43,7 +43,8 @@ public class PersonalInfoTests extends BaseTestWithLogin {
         Assert.assertEquals(page.piTab.getTitle(), testData.getTab());
         Assert.assertTrue(getDriver().getBrowserUri().contains("https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails"));
 
-        var emp = new EmployeeFullName(testData.getEmpFirstName(), testData.getEmpMiddleName(), testData.getEmpLastName(), testData.getEmpNickName());
+        var emp = new EmployeeFullName(testData.getEmpFirstName(), testData.getEmpMiddleName(), testData.getEmpLastName());
+        emp.addNickname(testData.getEmpNickName());
         //page.setFullName(emp);
         page.setGender(Gender.valueOf(testData.getGender()));
         page.setHabit(Smoker.valueOf(testData.getSmoker()));

@@ -30,7 +30,7 @@ public class BaseTestSystemUser extends BaseTestWithLogin{
         PropertiesResourceManager rm= new PropertiesResourceManager(FILE_NAME);
         testData.set(new SystemUser( Role.valueOf(rm.getPropertyValueByKey("UserRole")),
                 UserStatus.valueOf(rm.getPropertyValueByKey("UserStatus")),
-                rm.getPropertyValueByKey("EmployeeName"),
+                getSystemAdmin().getName(),
                 rm.getPropertyValueByKey("UserName")+range.nextInt(1000),
                 rm.getPropertyValueByKey("Password")));
     }
