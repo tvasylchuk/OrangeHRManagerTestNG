@@ -21,11 +21,11 @@ public class ToolBarMenuPageComponent {
         PageFactory.initElements(this.browser.getWebDriver(), this);
     }
 
-    public void clickMenu(String txtMenu, String txtSubMenu){
+    public void clickSubMenu(String txtMenu, String txtSubMenu){
         for (WebElement item: menu) {
             if(item.getText().equals(txtMenu)){
                 item.click();
-                Logger.getInstance().info(String.format("pages.pageComponents.ToolBarMenuPageComponent.clickMenu.%s.click", txtMenu));
+                Logger.getInstance().info(String.format("pages.pageComponents.ToolBarMenuPageComponent.clickSubMenu.%s.click", txtMenu));
 
                 DropDownMenu subMenu = new DropDownMenu(item, browser);
                 subMenu.setValue(txtSubMenu);
@@ -35,7 +35,21 @@ public class ToolBarMenuPageComponent {
             }
         }
 
-        var str = String.format("pages.pageComponents.clickMenu.%s.%s.not.found", txtMenu, txtSubMenu);
+        var str = String.format("pages.pageComponents.clickSubMenu.%s.%s.not.found", txtMenu, txtSubMenu);
+        Logger.getInstance().error(str);
+        throw new RuntimeException(str);
+    }
+
+    public void clickMenu(String txtMenu){
+        for (WebElement item: menu) {
+            if(item.getText().equals(txtMenu)){
+                item.click();
+                Logger.getInstance().info(String.format("pages.pageComponents.ToolBarMenuPageComponent.clickMenu.%s.click", txtMenu));
+                return;
+            }
+        }
+
+        var str = String.format("pages.pageComponents.clickMenu.%s.not.found", txtMenu);
         Logger.getInstance().error(str);
         throw new RuntimeException(str);
     }

@@ -72,8 +72,11 @@ public class PersonalInfoPage extends EmployeeFormPage {
         txtLastName.sendKeys(employee.getLastName());
         Logger.getInstance().info(String.format("pages.PersonalInfoPage.setFullName.setLastName.%s.set", employee.getLastName().toLowerCase()));
 
-        txtNickName.sendKeys(employee.getNickname());
-        Logger.getInstance().info(String.format("pages.PersonalInfoPage.setFullName.setNickName.%s.set", employee.getNickname().toLowerCase()));
+        if (employee.getNickname() != null){
+            txtNickName.sendKeys(employee.getNickname());
+            Logger.getInstance().info(String.format("pages.PersonalInfoPage.setFullName.setNickName.%s.set", employee.getNickname().toLowerCase()));
+        }
+
     }
 
     public void selectNationality(Nationality nationalityItem){
@@ -140,8 +143,8 @@ public class PersonalInfoPage extends EmployeeFormPage {
 
             EmployeeFullName employee = new EmployeeFullName(txtFirstName.getValue(),
                     txtMiddleName.getValue(),
-                    txtLastName.getValue(),
-                    txtNickName.getValue());
+                    txtLastName.getValue());
+            employee.addNickname( txtNickName.getValue());
             return employee;
         }
         catch (Exception e){

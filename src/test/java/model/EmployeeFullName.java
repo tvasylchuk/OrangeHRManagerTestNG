@@ -5,13 +5,13 @@ public class EmployeeFullName {
     private final String firstName;
     private final String middleName;
     private final String lastName;
-    private final String nickname;
+    private String nickname;
+    private Integer employeeId;
 
-    public EmployeeFullName(String firstName, String middleName, String lastName, String nickname){
+    public EmployeeFullName(String firstName, String middleName, String lastName){
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        this.nickname = nickname;
     }
 
     public String getFirstName() {
@@ -28,6 +28,20 @@ public class EmployeeFullName {
 
     public String getNickname() {
         return nickname;
+    }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public EmployeeFullName addNickname(String nickname){
+        this.nickname = nickname;
+        return this;
+    }
+
+    public EmployeeFullName addEmployeeId(Integer id){
+        this.employeeId = id;
+        return this;
     }
 
     @Override
