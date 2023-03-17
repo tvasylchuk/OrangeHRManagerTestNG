@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Test Suite"  parallel="tests" verbose="10" >
-    <parameter name="runMode" value="Grid"/>
+    <parameter name="runMode" value="Local"/>
     <test name="Login Test Chrome" >
        <parameter name="browser" value="Chrome"/>
         <classes>
