@@ -5,7 +5,7 @@ pipeline {
       steps {
         git(url: 'https://github.com/tvasylchuk/OrangeHRManagerTestNG', branch: 'branch/testNG')
         bat 'mvn test'
-        testNG(failureOnFailedTestConfig: true, showFailedBuilds: true, reportFilenamePattern: '**/Report/testng-results.xml')
+        testNG(reportFilenamePattern: '**/Report/testng-results.xml')
       }
     }
 
