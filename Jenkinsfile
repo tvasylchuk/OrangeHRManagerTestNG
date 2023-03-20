@@ -7,7 +7,7 @@ pipeline {
     stage('Retrieve') {
       steps {
         echo "Retrieve code from the repository"
-        git credentialsId: 'a834a799-e866-4032-b976-e7b80ebff681' url: 'https://github.com/tvasylchuk/OrangeHRManagerTestNG', branch: 'branch/testNG'
+        git credentialsId: 'a834a799-e866-4032-b976-e7b80ebff681' url: 'https://github.com/tvasylchuk/OrangeHRManagerTestNG', branch: 'main'
       }
     }
     stage('Test') {
