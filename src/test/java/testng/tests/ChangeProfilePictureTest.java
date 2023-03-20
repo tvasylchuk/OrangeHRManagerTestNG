@@ -1,6 +1,7 @@
 package testng.tests;
 
 import framework.Constants;
+import framework.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.pageComponents.MainMenuPageComponent;
@@ -15,15 +16,23 @@ public class ChangeProfilePictureTest extends BaseTestWithLogin {
 
     @Test
     public void changeProfilePictureTest(){
-        var menu = new MainMenuPageComponent(getDriver());
-        menu.clickMenu("My Info");
-        var myInfoPage = new PersonalInfoPage(getDriver());
-        myInfoPage.piTab.selectPictureTab();
-        var picturePage = new ProfilePicturePage(getDriver());
-        picturePage.uploadPicture(FILE_NAME);
-        getDriver().waitPageToLoad();
-        Assert.assertFalse(picturePage.isProfilePictureDefault());
-        picturePage.savePersonalDataChanges();
-        Assert.assertTrue(picturePage.isProfilePictureDefault());
+        try{
+            var menu = new MainMenuPageComponent(getDriver());
+            menu.clickMenu("My Info");
+            var myInfoPage = new PersonalInfoPage(getDriver());
+            myInfoPage.piTab.selectPictureTab();
+            var picturePage = new ProfilePicturePage(getDriver());
+            picturePage.uploadPicture(FILE_NAME);
+            getDriver().waitPageToLoad();
+            Assert.assertFalse(picturePage.isProfilePictureDefault());
+            picturePage.savePersonalDataChanges();
+            Assert.assertTrue(picturePage.isProfilePictureDefault());
+        }
+        catch(Exception e)
+        {
+            Logger.getInstance().error(e.getMessage());
+            Logger.getInstance().error(e.getStackTrace().toString());
+            throw new RuntimeException(e);
+        }
     }
 }

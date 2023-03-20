@@ -2,7 +2,6 @@ package testng.tests;
 
 import framework.Logger;
 import model.EmployeeFullName;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.EmployeeListPage;
@@ -17,27 +16,35 @@ public class PrepareConfiguration extends BaseTest {
 
     @Test
     public void setupUsers(){
+        try{
         var basePage = new BasePage(getDriver());
-        basePage.waitTillPageLoaded();
+            basePage.waitTillPageLoaded();
 
-        var loginPage = new LoginPage(getDriver());
-        loginPage.login(getSuperAdmin());
+            var loginPage = new LoginPage(getDriver());
+            loginPage.login(getSuperAdmin());
 
-        var mainMenu = new MainMenuPageComponent(getDriver());
-        mainMenu.clickMenu("PIM");
-        getDriver().waitPageToLoad();
+            var mainMenu = new MainMenuPageComponent(getDriver());
+            mainMenu.clickMenu("PIM");
+            getDriver().waitPageToLoad();
 
-        Random employeeId = new Random();
-        EmployeeListPage emPage = new EmployeeListPage(getDriver());
-        emPage.createEmployee(convertToEmployeeFullName(getSystemAdmin().getName())
+            Random employeeId = new Random();
+            EmployeeListPage emPage = new EmployeeListPage(getDriver());
+            emPage.createEmployee(convertToEmployeeFullName(getSystemAdmin().getName())
                 .addEmployeeId(employeeId.nextInt(100000)));
 
-        mainMenu = new MainMenuPageComponent(getDriver());
-        mainMenu.clickMenu("Admin");
-        getDriver().waitPageToLoad();
+            mainMenu = new MainMenuPageComponent(getDriver());
+            mainMenu.clickMenu("Admin");
+            getDriver().waitPageToLoad();
 
-        var umPage = new UserManagementPage(getDriver());
-        umPage.addNewUser(getSystemAdmin());
+            var umPage = new UserManagementPage(getDriver());
+            umPage.addNewUser(getSystemAdmin());
+        }
+        catch(Exception e)
+        {
+            Logger.getInstance().error(e.getMessage());
+            Logger.getInstance().error(e.getStackTrace().toString());
+            throw new RuntimeException(e);
+        }
     }
 
     private EmployeeFullName convertToEmployeeFullName(String name){

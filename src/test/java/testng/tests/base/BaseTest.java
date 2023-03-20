@@ -57,6 +57,7 @@ public class BaseTest {
     @Parameters({"browser", "runMode"})
     public void setUp(ITestContext context, String browserType, String runMode)
     {
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         String name  = context.getName();
         driver.set(Driver.initDriver(BrowserType.valueOf(browserType), TestRunMode.valueOf(runMode), name));
         context.setAttribute("browser", driver.get());

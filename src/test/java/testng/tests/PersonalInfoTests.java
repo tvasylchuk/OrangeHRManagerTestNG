@@ -1,5 +1,6 @@
 package testng.tests;
 
+import framework.Logger;
 import framework.PropertiesResourceManager;
 import model.EmployeeFullName;
 import model.Gender;
@@ -33,30 +34,38 @@ public class PersonalInfoTests extends BaseTestWithLogin {
 
     @Test
     public void setPersonalInfoTabTest() {
-        var menuMenu = new MainMenuPageComponent(getDriver());
-        menuMenu.clickMenu(testData.getMenu());
-        getDriver().waitPageToLoad();
+        try{
+            var menuMenu = new MainMenuPageComponent(getDriver());
+            menuMenu.clickMenu(testData.getMenu());
+            getDriver().waitPageToLoad();
 
-        var page = new PersonalInfoPage(getDriver());
-        page.piTab.selectTab(testData.getTab());
-        getDriver().waitPageToLoad();
-        Assert.assertEquals(page.piTab.getTitle(), testData.getTab());
-        Assert.assertTrue(getDriver().getBrowserUri().contains("https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails"));
+            var page = new PersonalInfoPage(getDriver());
+            page.piTab.selectTab(testData.getTab());
+            getDriver().waitPageToLoad();
+            Assert.assertEquals(page.piTab.getTitle(), testData.getTab());
+            Assert.assertTrue(getDriver().getBrowserUri().contains("https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails"));
 
-        var emp = new EmployeeFullName(testData.getEmpFirstName(), testData.getEmpMiddleName(), testData.getEmpLastName());
-        emp.addNickname(testData.getEmpNickName());
+            var emp = new EmployeeFullName(testData.getEmpFirstName(), testData.getEmpMiddleName(), testData.getEmpLastName());
+            emp.addNickname(testData.getEmpNickName());
         //page.setFullName(emp);
-        page.setGender(Gender.valueOf(testData.getGender()));
-        page.setHabit(Smoker.valueOf(testData.getSmoker()));
-        page.setDateOfBirth(Date.valueOf(testData.getDateOfBirth()));
+            page.setGender(Gender.valueOf(testData.getGender()));
+            page.setHabit(Smoker.valueOf(testData.getSmoker()));
+            page.setDateOfBirth(Date.valueOf(testData.getDateOfBirth()));
 
-        page.selectNationality(Nationality.valueOf(testData.getNationality()));
-        page.savePersonalDataChanges();
+            page.selectNationality(Nationality.valueOf(testData.getNationality()));
+            page.savePersonalDataChanges();
 
-        Assert.assertEquals(page.getGender().toString(), testData.getGender());
-        Assert.assertEquals(page.getBirthOfDate(), testData.getDateOfBirth());
-        Assert.assertEquals(page.getHabit().toString(), testData.getSmoker());
-        Assert.assertEquals(page.getNationality().toString(),testData.getNationality());
+            Assert.assertEquals(page.getGender().toString(), testData.getGender());
+            Assert.assertEquals(page.getBirthOfDate(), testData.getDateOfBirth());
+            Assert.assertEquals(page.getHabit().toString(), testData.getSmoker());
+            Assert.assertEquals(page.getNationality().toString(),testData.getNationality());
        // Assert.assertTrue(page.getEmployeeFullName().equals(emp));
+        }
+        catch(Exception e)
+        {
+            Logger.getInstance().error(e.getMessage());
+            Logger.getInstance().error(e.getStackTrace().toString());
+            throw new RuntimeException(e);
+        }
     }
 }
