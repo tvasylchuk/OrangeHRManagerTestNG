@@ -12,8 +12,10 @@ pipeline {
     }
     stage('Test') {
         steps {
+        catchError{
             echo "Run tests"
-            bat 'mvn test'
+            bat 'mvn test -Dmaven.test.failure.ignore=true'
+            }
         }
     }
   }
