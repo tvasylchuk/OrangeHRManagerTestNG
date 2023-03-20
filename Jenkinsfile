@@ -22,7 +22,7 @@ pipeline {
         steps{
             testNG reportFilenamePattern: '**/Report/testng-results.xml'
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false,
-            reportDir: 'Report/emailable-report.html', reportFiles: 'index.html', reportName: 'HTML Report',
+            reportDir: 'Report', reportFiles: 'index.html', reportName: 'HTML Report',
             reportTitles: '', useWrapperFileDirectly: true])
         }
     }
