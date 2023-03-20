@@ -14,9 +14,12 @@ pipeline {
         steps {
         catchError{
             echo "Run tests"
-            bat 'mvn test -Dmaven.test.failure.ignore=true'
+            bat 'mvn test'
             }
         }
+    }
+    stage('Report') {
+        testNG reportFilenamePattern: '**/Report/testng-results.xml'
     }
   }
   post{
