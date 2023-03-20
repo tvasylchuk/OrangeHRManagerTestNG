@@ -19,7 +19,9 @@ pipeline {
         }
     }
     stage('Report') {
-        testNG reportFilenamePattern: '**/Report/testng-results.xml'
+        steps{
+            testNG reportFilenamePattern: '**/Report/testng-results.xml'
+        }
     }
   }
   post{
