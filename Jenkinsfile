@@ -13,9 +13,7 @@ pipeline {
     stage("Selenium Server Run"){
         steps {
             echo "Run Selenium Server"
-            withEnv(['SELENIUM_HOME = C:\\webdrivers']){
-                bat 'java -jar %SELENIUM_HOME%\\selenium-server-4.8.1.jar standalone --port 4446'
-            }
+                bat 'java -jar C:\\webdrivers\\selenium-server-4.8.1.jar standalone --port 4446'
         }
     }
     stage('Test') {
