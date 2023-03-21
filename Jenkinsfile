@@ -10,6 +10,12 @@ pipeline {
             git branch: 'main', credentialsId: 'a834a799-e866-4032-b976-e7b80ebff681', url: 'https://github.com/tvasylchuk/OrangeHRManagerTestNG'
       }
     }
+    stage("Selenium Server Run"){
+        steps {
+            echo "Run Selenium Server"
+            bat 'java -jar %SELENIUM_HOME%\\selenium-server-4.8.1.jar standalone --port 4446'
+        }
+    }
     stage('Test') {
         steps {
         catchError{
