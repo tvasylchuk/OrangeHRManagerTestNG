@@ -54,11 +54,12 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    @Parameters({"browser", "runMode"})
-    public void setUp(ITestContext context, String browserType, String runMode)
+    @Parameters({"browser"})
+    public void setUp(ITestContext context, String browserType)
     {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         String name  = context.getName();
+        String runMode = System.getProperty("mode", TestRunMode.Local.toString());
         driver.set(Driver.initDriver(BrowserType.valueOf(browserType), TestRunMode.valueOf(runMode), name));
         context.setAttribute("browser", driver.get());
         driver.get().navigate("https://opensource-demo.orangehrmlive.com");

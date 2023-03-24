@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  properties([parameters([choice(choices: ['Local', 'Grid'], name: 'Mode')]),
+                pipelineTriggers([cron('H 13 * * *'),
+                pollSCM('H/10 * * * *')])])
   tools{
     maven "3.8.7"
   }
