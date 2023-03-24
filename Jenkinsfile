@@ -7,6 +7,13 @@ pipeline {
     maven "3.8.7"
   }
   stages {
+    stage('Setup parameters'){
+        script {
+                properties([parameters([choice(choices: ['Local', 'Grid'], name: 'Mode')]),
+                pipelineTriggers([cron('H 13 * * *'),
+                pollSCM('H/10 * * * *')])])
+        }
+    }
     stage('Retrieve') {
       steps {
             echo "Retrieve code from the repository"
