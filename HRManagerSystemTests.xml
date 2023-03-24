@@ -19,7 +19,7 @@
               <class name="testng.tests.CleanConfiguration"/>
           </classes>
     </test>
-    <!--<test name="Login Test Edge" >
+    <test name="Login Test Edge" >
         <parameter name="browser" value="Edge"/>
         <classes>
             <class name="testng.tests.LoginTest"/>
@@ -36,7 +36,7 @@
             <class name="testng.tests.ChangeProfilePictureTest"/>
             <class name="testng.tests.CleanConfiguration"/>
         </classes>
-    </test> -->
+    </test>
     <test name="Login Test Firefox" >
         <parameter name="browser" value="Firefox"/>
         <classes>
