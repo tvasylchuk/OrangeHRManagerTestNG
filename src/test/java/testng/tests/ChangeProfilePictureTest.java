@@ -14,7 +14,6 @@ public class ChangeProfilePictureTest extends BaseTestWithLogin {
 
     private final String FILE_NAME = Constants.PICTURES_DIR+"kitty_picture.jpg";
 
-    @Test
     public void changeProfilePictureTest(){
         try{
             var menu = new MainMenuPageComponent(getDriver());

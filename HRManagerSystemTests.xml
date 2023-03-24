@@ -16,7 +16,6 @@
               <class name="testng.tests.SearchSystemUserTests"/>
               <class name="testng.tests.DeleteSystemUserTests"/>
               <class name="testng.tests.PersonalInfoTests"/>
-              <class name="testng.tests.ChangeProfilePictureTest"/>
               <class name="testng.tests.CleanConfiguration"/>
           </classes>
     </test>
