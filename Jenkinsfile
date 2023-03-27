@@ -17,7 +17,7 @@ pipeline {
         steps {
         catchError{
             echo "Run tests"
-            bat 'mvn clean test -Dmode=${params.Mode}'
+            bat 'mvn clean test -Dmode=%params.Mode%'
             }
         }
     }
