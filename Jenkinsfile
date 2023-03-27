@@ -1,7 +1,10 @@
 pipeline {
   agent any
   parameters{
-    choice(choices: ['Local', 'Grid'], name: 'Mode')
+    choice(
+    name: 'Mode',
+    choices: "Local\nGrid"
+    )
   }
   tools{
     maven "3.8.7"
