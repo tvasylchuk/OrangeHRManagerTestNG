@@ -1,19 +1,12 @@
 pipeline {
   agent any
-  properties([parameters([choice(choices: ['Local', 'Grid'], name: 'Mode')]),
-                pipelineTriggers([cron('H 13 * * *'),
-                pollSCM('H/10 * * * *')])])
+  parameters{
+    choice(choices: ['Local', 'Grid'], name: 'Mode')]
+  }
   tools{
     maven "3.8.7"
   }
   stages {
-    stage('Setup parameters'){
-        script {
-                properties([parameters([choice(choices: ['Local', 'Grid'], name: 'Mode')]),
-                pipelineTriggers([cron('H 13 * * *'),
-                pollSCM('H/10 * * * *')])])
-        }
-    }
     stage('Retrieve') {
       steps {
             echo "Retrieve code from the repository"
@@ -24,7 +17,7 @@ pipeline {
         steps {
         catchError{
             echo "Run tests"
-            bat 'mvn clean test -Dmode=%Mode%'
+            bat 'mvn clean test -Dmode=${params.Mode}'
             }
         }
     }
