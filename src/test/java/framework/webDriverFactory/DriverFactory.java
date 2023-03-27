@@ -39,7 +39,7 @@ public class DriverFactory {
         prefs.put("safebrowsing.enabled", true);
         return prefs;
     }
-    public static WebDriver setChromeDriver(TestRunMode mode, String testName)
+    public static WebDriver setChromeDriver(Mode mode, String testName)
     {
         initBrowserArguments();
         ChromeOptions options = new ChromeOptions();
@@ -85,7 +85,7 @@ public class DriverFactory {
         }
     }
 
-    public static WebDriver setFirefoxDriver(TestRunMode mode, String testName){
+    public static WebDriver setFirefoxDriver(Mode mode, String testName){
         initBrowserArguments();
 
         FirefoxProfile profile = new FirefoxProfile();
@@ -133,7 +133,7 @@ public class DriverFactory {
         }
     }
 
-    public static WebDriver setEdgeDriver(TestRunMode mode, String testName){
+    public static WebDriver setEdgeDriver(Mode mode, String testName){
         initBrowserArguments();
         EdgeOptions options = new EdgeOptions();
         options.setExperimentalOption("prefs", initPrefs());

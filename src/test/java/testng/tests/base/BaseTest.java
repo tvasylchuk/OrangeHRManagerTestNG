@@ -3,7 +3,7 @@ package testng.tests.base;
 import framework.PropertiesResourceManager;
 import framework.webDriverFactory.BrowserType;
 import framework.webDriverFactory.Driver;
-import framework.webDriverFactory.TestRunMode;
+import framework.webDriverFactory.Mode;
 import model.Credentials;
 import model.user.Role;
 import model.user.SystemUser;
@@ -59,8 +59,8 @@ public class BaseTest {
     {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         String name  = context.getName();
-        String runMode = System.getProperty("mode", TestRunMode.Local.toString());
-        driver.set(Driver.initDriver(BrowserType.valueOf(browserType), TestRunMode.valueOf(runMode), name));
+        String runMode = System.getProperty("mode", Mode.Local.toString());
+        driver.set(Driver.initDriver(BrowserType.valueOf(browserType), Mode.valueOf(runMode), name));
         context.setAttribute("browser", driver.get());
         driver.get().navigate("https://opensource-demo.orangehrmlive.com");
         driver.get().waitPageToLoad();

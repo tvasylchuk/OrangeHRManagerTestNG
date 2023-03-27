@@ -1,6 +1,6 @@
 package framework.webDriverFactory;
 
-public enum TestRunMode {
+public enum Mode {
     Local,
     Grid,
     SauceLabs,

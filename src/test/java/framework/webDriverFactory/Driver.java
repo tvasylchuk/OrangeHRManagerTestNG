@@ -14,7 +14,7 @@ public class Driver {
     private WebDriver _driver;
     private WebDriverWait _wait;
     private BrowserType _currentBrowser;
-    private TestRunMode _mode;
+    private Mode _mode;
     private Duration _pageLoadTimeout;
     private Duration implicitWait;
     private Duration explicitWait;
@@ -23,7 +23,7 @@ public class Driver {
         initBrowserProperties();
     }
 
-    public static Driver initDriver(BrowserType type, TestRunMode mode, @Nullable String testName){
+    public static Driver initDriver(BrowserType type, Mode mode, @Nullable String testName){
         var driver = new Driver();
 
         driver._currentBrowser = type;
@@ -56,7 +56,7 @@ public class Driver {
         return _pageLoadTimeout;
     }
 
-    public TestRunMode getTestRunMode() {
+    public Mode getTestRunMode() {
         return _mode;
     }
 
